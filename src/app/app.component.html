@@ -5,9 +5,12 @@
     </div>
     <nav class="header_nav"> 
       <a class="header_nav_item" href="#">{{headeritem1}}</a> 
-      <a  class="header_nav_item" href="#">{{headeritem2}}</a>
-      <a class="header_nav_item" href="#">{{headeritem3}}</a>
+      <a  class="header_nav_item"*ngIf="aboutCompany" href="#">{{headeritem2}}</a>
+      <a class="header_nav_item" *ngIf="isShowCatalog"href="#">{{headeritem3}}</a>
     </nav>  
+    <button (click)="aboutCompany = !aboutCompany" >скрыть-показать</button>
+    <button (click)="isShowCatalog = !isShowCatalog">скрыть-показать</button>
+    <button (click)="changeMenuText()" >Изменить текст</button>
   </div>
   <div class="header_right">
     <img src="assets/Phone.svg" alt="Телефон">
@@ -24,11 +27,11 @@
 <div class="header_niz_left">
   <img src="assets/light.svg" alt="Каталог">
   <div class="nav_2">
-    <button class="nav2">{{header2item1}}</button> 
-    <button class="nav2">{{header2item2}}</button> 
+    <button class="nav2"*ngFor="let item of menuItems">{{item}}</button> 
+    <!-- <button class="nav2">{{header2item2}}</button> 
     <button class="nav2">{{header2item3}}</button> 
-    <button class="nav2">{{header2item4}}</button> 
-    <button class="nav2">{{header2item5}}</button> 
+    <button class="nav2">{{header2item4}}</button>        
+    <button class="nav2">{{header2item5}}</button>  -->
   </div>
 </div>
 
@@ -45,7 +48,8 @@
 
 
 <section class="hero-image">
-<img src="assets/Rectangle 5.png" alt="Фоновое изображение" style="width: 100%;">
+  <button (click)="ispicture = !ispicture">скрыть-показать Работягу</button>
+<img *ngIf="ispicture" src="assets/Rectangle 5.png" alt="Фоновое изображение" style="width: 100%;">
 </section>
 
 
@@ -74,6 +78,7 @@
 
 <section class="container_paginations">
 <div class="paginations">
+  <button class="item-cards__pagination-button active-button" *ngFor="let item of newPages">{{item}}</button>
   <button class="paginations_buttons">1</button>
   <button class="paginations_buttons">2</button>
   <button class="paginations_buttons">3</button>
